@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: #ffffff;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Email Tasdiqlash</h2>
+        <p>Assalomu alaykum, <strong>{{ user.first_name }}</strong>!</p>
+        <p>Siz ro'yxatdan o'tdingiz. Akkauntingizni faollashtirish uchun quyidagi tugmani bosing:</p>
+        <a href="{{ confirmation_link }}" class="btn">Emailni Tasdiqlash</a>
+        <p>Agar bu siz emas bo'lsangiz, bu xatni e'tiborsiz qoldiring.</p>
+        <div class="footer">
+            <p>&copy; 2025 Sizning Saytingiz | Barcha huquqlar himoyalangan.</p>
+        </div>
+    </div>
+</body>
+</html>

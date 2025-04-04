@@ -1,0 +1,109 @@
+{% extends 'components/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Font Awesome -->
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- MDB -->
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Option 1: Include in HTML -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+		/>
+		<title>Online Store | Categories</title>
+	</head>
+	<body class="d-flex flex-column">
+
+		{% block content %}
+		<main class="">
+			<div class="container m-auto mt-5 row gap-2 justify-content-center">
+				{% for category in categories %}
+					<div class="card col-3 p-0">
+						<img class="card-img-top" src="{{ category.image.url }}" alt="Card image cap" />
+						<div class="card-body">
+							<h3>
+								<a class="text-decoration-none" href="{% url 'online_store:categories_detail' category.slug %}">{{ category.title }}</a>
+							</h3>
+							<p class="card-text">
+								<span class="short-text">
+									{{ category.description|truncatewords:20 }}
+								</span>
+								<a href="{% url 'online_store:categories_detail' category.slug %}" class="text-primary toggle-text">...more</a>
+							</p>
+							<h4>Mahsulotlar:</h4>
+							<ul>
+								{% for product in category.products_list %}
+									<li>
+										<h5>{{ product.name }}</h5>
+										<p>{{ product.description }}</p>
+										<p>{{ product.price }} so'm</p>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				{% endfor %}
+
+			</div>
+
+			<div class="d-flex justify-content-center mt-5">
+				<nav aria-label="...">
+					<ul class="pagination">
+						{% if page_obj.has_previous %}
+						<li class="page-item">
+							<a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<a class="page-link text-dark" href="#" tabindex="-1">&laquo;</a>
+						</li>
+						{% endif %}
+		
+						{% for page in custom_range %}
+						{% if page == page_obj.number %}
+						<li class="page-item active">
+							<a class="page-link bg-dark text-white border-0" href="?page={{ page }}">{{ page }}</a>
+						</li>
+						{% else %}
+						<li class="page-item">
+							<a class="page-link text-dark" href="?page={{ page }}">{{ page }}</a>
+						</li>
+						{% endif %}
+						{% endfor %}
+		
+						{% if page_obj.has_next %}
+						<li class="page-item">
+							<a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<a class="page-link text-dark" href="#" tabindex="-1">&raquo;</a>
+						</li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+		{% endblock %}
+		</main>
+
+		<!-- MDB -->
+		<script
+			type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.umd.min.js"
+		></script>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.min.css" rel="stylesheet" />
+    <title>Login | Online Store</title>
+</head>
+<body class="d-flex flex-column bg-dark">
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                         class="img-fluid" alt="Phone image"/>
+                </div>
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                    <!-- Django Messages -->
+                    {% if messages %}
+                        <div class="mb-4">
+                            {% for message in messages %}
+                                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Login Form -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <!-- Email input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="email" name="email" id="email" class="form-control form-control-lg text-light" required />
+                            <label class="form-label text-light" for="email">Email address</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="password" name="password" id="password" class="form-control form-control-lg text-light" required />
+                            <label class="form-label text-light" for="password">Password</label>
+                        </div>
+
+                        <!-- Remember me & Forgot Password -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="rememberMe" />
+                                <label class="form-check-label text-light" for="rememberMe"> Remember me </label>
+                            </div>
+                            <a href="{% url 'online_store:reset_password' %}" class="text-light">Forgot password?</a>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+
+                        <!-- OR Divider -->
+                        <div class="d-flex align-items-center my-4">
+                            <p class="text-light text-center fw-bold mx-3 mb-0">OR</p>
+                        </div>
+
+                        <!-- Social Login -->
+                        <a class="btn btn-primary btn-lg btn-block" style="background-color: #db4437; border: none;">
+                            <i class="fab fa-google me-2"></i> Continue with Google
+                        </a>
+                        <a class="btn btn-dark btn-lg btn-block">
+                            <i class="fab fa-github me-2"></i> Continue with GitHub
+                        </a>
+                    </form>
+
+                    <!-- Register Link -->
+                    <div class="d-flex justify-content-center mt-3">
+                        <p class="m-0 text-light">
+                            Don't have an account? <a href="{% url 'online_store:registration' %}" class="text-primary">Register</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.umd.min.js"></script>
+</body>
+</html>

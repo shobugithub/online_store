@@ -1,0 +1,107 @@
+{% extends "components/base.html" %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        color: #ffffff;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .checkout-container {
+        max-width: 650px;
+        margin: auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        text-align: center;
+    }
+
+    .checkout-container h1 {
+        font-size: 2.5rem;
+        color: #ff9ff3;
+        text-shadow: 0 0 10px rgba(255, 159, 243, 0.8);
+    }
+
+    .checkout-container p {
+        font-size: 1.2rem;
+        color: #ddd;
+    }
+
+    .order-summary {
+        margin-top: 25px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(255, 159, 243, 0.3);
+    }
+
+    .order-summary table {
+        width: 100%;
+        color: #fff;
+    }
+
+    .order-summary th, .order-summary td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-aesthetic {
+        margin-top: 20px;
+        padding: 12px 30px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #fff;
+        background: linear-gradient(45deg, #ff9ff3, #8c52ff);
+        border: none;
+        border-radius: 50px;
+        box-shadow: 0 0 15px rgba(255, 159, 243, 0.8);
+        transition: 0.3s ease-in-out;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-aesthetic:hover {
+        box-shadow: 0 0 25px rgba(255, 159, 243, 1);
+        transform: scale(1.08);
+    }
+</style>
+
+<div class="checkout-container">
+    <h1>🎉 Thank You for Your Order!</h1>
+    <p>Your order has been placed successfully.</p>
+
+    <h4>📦 Expected Shipping Delivery</h4>
+    <p>Estimated delivery time: <strong>2-3 days</strong> (standard) or <strong>5-7 days</strong> (international).</p>
+
+    <div class="order-summary">
+        <h4>💳 Order Summary</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Products</th>
+                    <th>Total Price</th>
+                    <th>Shipping</th>
+                    <th>Grand Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ product_names }}</td>
+                    <td>${{ total_price }}</td>
+                    <td>$5</td>
+                    <td><strong>${{ grand_total }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{% url 'online_store:index_page' %}" class="btn-aesthetic">🏠 Continue Shopping</a>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'components/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ category.title }}</h2>
+    <p>{{ category.description }}</p>
+
+    <h4>Mahsulotlar:</h4>
+    <ul>
+        {% for product in products %}
+            <li>
+                <h5>{{ product.name }}</h5>
+                <p>{{ product.description }}</p>
+                <p>{{ product.price }} so'm</p>
+            </li>
+        {% empty %}
+            <p>Bu kategoriyada mahsulotlar mavjud emas.</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

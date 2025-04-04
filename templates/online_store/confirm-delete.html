@@ -1,0 +1,17 @@
+{% extends 'components/base.html' %}
+
+{% block content %}
+<main class="container py-5 d-flex flex-column align-items-center">
+    <div class="card p-4 shadow-sm border-0 text-center" style="max-width: 500px;">
+        <h2 class="text-danger">Delete Product</h2>
+        <p class="text-muted">Are you sure you want to delete <strong>{{ product.title }}</strong>?</p>
+        <form action="{% url 'online_store:delete_product' product.id %}" method="POST">
+            {% csrf_token %}
+            <div class="d-flex gap-3 justify-content-center mt-3">
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                <a href="{% url 'online_store:index_page' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

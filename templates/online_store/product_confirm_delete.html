@@ -1,0 +1,30 @@
+{% extends 'components/base.html' %}
+
+{% block content %}
+<main class="vh-100 bg-light">
+    <div class="container m-auto mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h3 class="text-danger mb-4">Are you sure you want to delete the product?</h3>
+                        <h4 class="text-dark mb-4"><strong>{{ product.title }}</strong></h4>
+                        <p class="text-muted mb-4">{{ product.description }}</p>
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <!-- Delete Button -->
+                            <form action="{% url 'online_store:delete_product' product.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-lg w-100">Yes, Delete</button>
+                            </form>
+                            
+                            <!-- Cancel Button -->
+                            <a href="{% url 'online_store:index' %}" class="btn btn-secondary btn-lg w-100">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
